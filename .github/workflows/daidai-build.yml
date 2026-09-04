@@ -38,7 +38,7 @@ jobs:
       - name: Build
         run: |
           set -o pipefail
-          ./gradlew assembleDebug assembleRelease --stacktrace | tee build-output.log
+          ./gradlew assembleDebug assembleRelease --stacktrace 2>&1 | tee build-output.log
 
       - name: Upload APKs
         if: success()
