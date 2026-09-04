@@ -57,9 +57,15 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           {
-            echo "**Daidai CI build failed** — log tail (last 150 lines):"
+            echo "**Daidai CI build failed**"
+            echo ""
+            echo "### Compiler errors"
             echo '```'
-            tail -n 150 build-output.log 2>/dev/null || echo "no build log produced"
+            grep -E "^e: |error: " build-output.log | sed "s|file:///home/runner/work/YuzuBrowser/YuzuBrowser/daidai/||" | head -n 80 || echo "(none found)"
+            echo '```'
+            echo "### Log tail (30 lines)"
+            echo '```'
+            tail -n 30 build-output.log 2>/dev/null || echo "no build log produced"
             echo '```'
           } > comment.md
           python3 -c 'import json; print(json.dumps({"body": open("comment.md").read()}))' > payload.json
