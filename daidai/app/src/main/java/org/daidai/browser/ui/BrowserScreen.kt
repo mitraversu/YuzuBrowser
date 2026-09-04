@@ -16,9 +16,9 @@ import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
-import org.daidai.browser.BrowserViewModel
 import org.daidai.browser.actions.BrowserAction
 import org.daidai.browser.browser.BrowserUiState
+import org.daidai.browser.browser.BrowserViewModel
 
 @Composable
 fun BrowserScreen(
