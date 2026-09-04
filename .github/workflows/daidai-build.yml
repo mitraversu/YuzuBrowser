@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   issues: write
 
 jobs:
@@ -41,16 +41,14 @@ jobs:
           ./gradlew assembleDebug assembleRelease --stacktrace 2>&1 | tee build-output.log
 
       - name: Upload APKs
-        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: daidai-apks
           path: daidai/app/build/outputs/apk/**/*.apk
           retention-days: 30
 
-      # The sandbox that drives this repo cannot download Actions logs
-      # (network-restricted), so on failure the log tail is reported as a
-      # commit comment through the API.
+      # Report failures as a commit comment — readable even from
+      # network-restricted environments that cannot download Actions logs.
       - name: Publish failure log
         if: failure()
         env:
@@ -70,21 +68,3 @@ jobs:
           } > comment.md
           python3 -c 'import json; print(json.dumps({"body": open("comment.md").read()}))' > payload.json
           gh api --method POST "repos/${{ github.repository }}/commits/${{ github.sha }}/comments" --input payload.json || echo "comment failed"
-
-          # best-effort branch commit as backup channel
-          tail -n 400 build-output.log > ci-last-build.log 2>/dev/null || true
-          git config user.name "daidai-ci"
-          git config user.email "actions@users.noreply.github.com"
-          git add ci-last-build.log || true
-          git commit -m "ci: capture failing build log [skip ci]" || echo "nothing to commit"
-          git push || echo "branch push failed"
-
-      - name: Publish success marker
-        if: success()
-        run: |
-          echo "BUILD OK $(date -u +%FT%TZ)" > ci-last-build.log
-          git config user.name "daidai-ci"
-          git config user.email "actions@users.noreply.github.com"
-          git add ci-last-build.log
-          git commit -m "ci: build ok [skip ci]" || echo "nothing to commit"
-          git push
