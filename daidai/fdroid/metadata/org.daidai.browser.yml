@@ -1,0 +1,46 @@
+# F-Droid metadata stub — Daidai (org.daidai.browser)
+#
+# NOT YET SUBMITTED. Target: F-Droid inclusion at M3 "Sapling".
+# Before submission we need:
+#   - stable versioning + tagged releases on the `dev` branch
+#   - reproducible build verification (fdroid checkupdates / fdroid build -l)
+#   - screenshots + full en/de/ja metadata (summary/description/changelog)
+#   - confirm the applicationId (own a domain, or move to io.github.<org>)
+#
+# See https://f-droid.org/docs/Build_Metadata_Reference/
+
+Categories:
+  - Internet
+License: Apache-2.0
+
+AutoName: Daidai
+
+Summary: The Yuzu Browser concept, reborn — assemble your own browser
+
+Description: |-
+    Daidai (ダイダイ, 代々 — "from generation to generation") carries the
+    spirit of Yuzu Browser (2017–2021) into a modern codebase.
+
+    Everything is an Action: the toolbar is not designed, it is assembled.
+    Long-press any toolbar button to add, remove or reorder actions.
+
+    · System WebView engine — lean and private
+    · Zero telemetry, no Google Play Services
+    · Hosts-based ad & tracker blocking with configurable source
+    · Search engine choice (DuckDuckGo, Brave, Startpage, Google, Bing)
+    · Tabs, bookmarks, find-in-page, desktop-site toggle
+
+RepoType: git
+Repo: https://github.com/mitraversu/YuzuBrowser
+
+Builds:
+  - versionName: 0.1.0
+    versionCode: 1
+    commit: TBD
+    subdir: daidai
+    gradle:
+      - yes
+
+MaintainerNotes: |-
+    Revival of the Yuzu Browser concept in a fresh Kotlin/Compose codebase
+    living in the daidai/ subdirectory of the repository.

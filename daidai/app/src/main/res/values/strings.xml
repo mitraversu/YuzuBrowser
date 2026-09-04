@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Daidai</string>
+    <string name="tagline">The Yuzu Browser concept, reborn</string>
+
+    <!-- URL bar -->
+    <string name="hint_search_or_url">Search or type URL</string>
+
+    <!-- Actions -->
+    <string name="action_go_back">Go back</string>
+    <string name="action_go_forward">Go forward</string>
+    <string name="action_reload">Reload</string>
+    <string name="action_stop">Stop loading</string>
+    <string name="action_new_tab">New tab</string>
+    <string name="action_close_tab">Close tab</string>
+    <string name="action_tabs">Tab switcher</string>
+    <string name="action_share_page">Share page</string>
+    <string name="action_bookmark_page">Bookmark this page</string>
+    <string name="action_open_bookmarks">Bookmarks</string>
+    <string name="action_find_in_page">Find in page</string>
+    <string name="action_desktop_site">Desktop site</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_menu">Menu</string>
+
+    <!-- Toolbar editor -->
+    <string name="customize_toolbar">Customize toolbar</string>
+    <string name="toolbar_editor_hint">Long-press any toolbar button to open this editor.</string>
+    <string name="add_actions">Add action</string>
+    <string name="remove_action">Remove</string>
+    <string name="move_up">Move up</string>
+    <string name="move_down">Move down</string>
+
+    <!-- Tabs -->
+    <string name="tabs_title">Tabs</string>
+    <string name="tab_count">%1$d tabs</string>
+    <string name="close_tab">Close tab</string>
+
+    <!-- Find bar -->
+    <string name="find_matches">%1$d/%2$d</string>
+    <string name="find_previous">Previous match</string>
+    <string name="find_next">Next match</string>
+    <string name="close_find_bar">Close find bar</string>
+
+    <!-- Menu extras -->
+    <string name="bookmarks_title">Bookmarks</string>
+    <string name="bookmark_added">Bookmarked</string>
+    <string name="bookmarks_empty">No bookmarks yet</string>
+    <string name="delete_bookmark">Delete bookmark</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="search_engine">Search engine</string>
+    <string name="ad_block">Ad &amp; tracker blocking</string>
+    <string name="blocklist_source">Blocklist source (hosts format)</string>
+    <string name="update_blocklist">Update blocklist now</string>
+    <string name="blocklist_updating">Updating blocklist…</string>
+    <string name="blocklist_hosts">%1$d hosts blocked</string>
+    <string name="blocklist_update_failed">Update failed — check the URL or connection</string>
+    <string name="blocklist_update_ok">Blocklist updated (%1$d hosts)</string>
+    <string name="clear_browsing_data">Clear browsing data</string>
+    <string name="browsing_data_cleared">Browsing data cleared</string>
+    <string name="about">About</string>
+    <string name="about_lineage">Daidai (ダイダイ, 代々) carries on the spirit of Yuzu Browser (2017–2021) by Hazuki, which followed Mikan Browser. Everything is an Action — you assemble your own browser.</string>
+    <string name="license">Apache License 2.0</string>
+</resources>
