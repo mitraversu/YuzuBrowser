@@ -14,3 +14,5 @@ The first sprout of the revival.
 - Downloads via system DownloadManager
 - en / de / ja UI
 - GitHub Actions CI producing debug + release APKs
+
+<!-- placeholder -->
