@@ -12,6 +12,9 @@ on:
       - ".github/workflows/daidai-build.yml"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build APKs
@@ -23,22 +26,46 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: 17
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
-        with:
-          build-root-directory: daidai
 
       - name: Build
-        run: ./gradlew assembleDebug assembleRelease --stacktrace
+        run: |
+          set -o pipefail
+          ./gradlew assembleDebug assembleRelease --stacktrace | tee build-output.log
 
       - name: Upload APKs
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: daidai-apks
           path: daidai/app/build/outputs/apk/**/*.apk
           retention-days: 30
+
+      # The sandbox that drives this repo cannot download Actions logs
+      # (network-restricted), so on failure the log tail is committed to the
+      # branch for post-mortem. [skip ci] prevents a trigger loop.
+      - name: Publish failure log to branch
+        if: failure()
+        run: |
+          tail -n 400 build-output.log > ci-last-build.log 2>/dev/null || echo "no build log" > ci-last-build.log
+          git config user.name "daidai-ci"
+          git config user.email "actions@users.noreply.github.com"
+          git add ci-last-build.log
+          git commit -m "ci: capture failing build log [skip ci]" || echo "nothing to commit"
+          git push
+
+      - name: Publish success marker
+        if: success()
+        run: |
+          echo "BUILD OK $(date -u +%FT%TZ)" > ci-last-build.log
+          git config user.name "daidai-ci"
+          git config user.email "actions@users.noreply.github.com"
+          git add ci-last-build.log
+          git commit -m "ci: build ok [skip ci]" || echo "nothing to commit"
+          git push
